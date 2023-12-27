@@ -14,8 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Global settings
 vim.g.mapleader = " "
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
 
 -- Load plugins
 require("lazy").setup({
@@ -89,52 +87,59 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {}
 	},
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v1.x',
-    dependencies = {
-      -- LSP Support
-      'neovim/nvim-lspconfig',             -- Required
-      'williamboman/mason.nvim',           -- Optional
-      'williamboman/mason-lspconfig.nvim', -- Optional
+	{
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v1.x',
+		dependencies = {
+			-- LSP Support
+			'neovim/nvim-lspconfig',             -- Required
+			'williamboman/mason.nvim',           -- Optional
+			'williamboman/mason-lspconfig.nvim', -- Optional
 
-      -- Autocompletion
-      'hrsh7th/nvim-cmp',         -- Required
-      'hrsh7th/cmp-nvim-lsp',     -- Required
-      'hrsh7th/cmp-buffer',       -- Optional
-      'hrsh7th/cmp-path',         -- Optional
-      'saadparwaiz1/cmp_luasnip', -- Optional
-      'hrsh7th/cmp-nvim-lua',     -- Optional
+			-- Autocompletion
+			'hrsh7th/nvim-cmp',         -- Required
+			'hrsh7th/cmp-nvim-lsp',     -- Required
+			'hrsh7th/cmp-buffer',       -- Optional
+			'hrsh7th/cmp-path',         -- Optional
+			'saadparwaiz1/cmp_luasnip', -- Optional
+			'hrsh7th/cmp-nvim-lua',     -- Optional
 
-      -- Snippets
-      'L3MON4D3/LuaSnip',             -- Required
-      'rafamadriz/friendly-snippets', -- Optional
-    }
-  },
-  {
-    -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
+			-- Snippets
+			'L3MON4D3/LuaSnip',             -- Required
+			'rafamadriz/friendly-snippets', -- Optional
+		}
+	},
+	{
+		-- Autocompletion
+		'hrsh7th/nvim-cmp',
+		dependencies = {
+			-- Snippet Engine & its associated nvim-cmp source
+			'L3MON4D3/LuaSnip',
+			'saadparwaiz1/cmp_luasnip',
 
-      -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
+			-- Adds LSP completion capabilities
+			'hrsh7th/cmp-nvim-lsp',
+			'hrsh7th/cmp-path',
 
-      -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
-    },
-  },
-  {
-    'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-  },
-  {
-    'NvChad/nvim-colorizer.lua',
-    opts = {}
-  }
+			-- Adds a number of user-friendly snippets
+			'rafamadriz/friendly-snippets',
+		},
+	},
+	{
+		'folke/trouble.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		opts = {}
+	},
+	{
+		'NvChad/nvim-colorizer.lua',
+		opts = {}
+	},
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function() vim.fn["mkdp#util#install"]() end,
+	}
 })
 
 local builtin = require('telescope.builtin')
@@ -197,6 +202,7 @@ vim.keymap.set("i", "<c-t>", "<Esc>b~lea")
 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
 vim.keymap.set('n', '<leader>fd', vim.lsp.buf.format)
 vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help)
+
 -- Optiones
 -- [[ Context ]]
 -- vim.opt.colorcolumn = '80'           -- str:  Show col for max line length
@@ -207,7 +213,7 @@ vim.opt.signcolumn = "yes"           -- str:  Show the sign column
 
 -- [[ Filetypes ]]
 vim.opt.encoding = 'utf8'            -- str:  String encoding to use
-vim.opt.fileencoding = 'utf8'        -- str:  File encoding to use
+--- vim.opt.fileencoding = 'utf8'        -- str:  File encoding to use
 
 -- [[ Theme ]]
 vim.opt.syntax = "ON"                -- str:  Allow syntax highlighting
