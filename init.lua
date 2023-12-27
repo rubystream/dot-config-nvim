@@ -139,7 +139,14 @@ require("lazy").setup({
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
 		build = function() vim.fn["mkdp#util#install"]() end,
-	}
+	},
+  {
+    'akinsho/toggleterm.nvim', 
+    version = "*", 
+    opts = {
+      open_mapping = [[<c-\>]],
+    }
+  }
 })
 
 local builtin = require('telescope.builtin')
@@ -203,6 +210,19 @@ vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
 vim.keymap.set('n', '<leader>fd', vim.lsp.buf.format)
 vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help)
 
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 -- Optiones
 -- [[ Context ]]
 -- vim.opt.colorcolumn = '80'           -- str:  Show col for max line length
