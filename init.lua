@@ -156,6 +156,16 @@ require("lazy").setup({
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     }
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
   }
 })
 
@@ -175,7 +185,27 @@ require('lualine').setup({
     }
 })
 
-require("bufferline").setup({})
+require("bufferline").setup({
+  options = {
+    numbers = "ordinal"
+  }
+})
+
+-- Kaymapping for bufferline
+vim.keymap.set('n', '<leader>1', "<Cmd>BufferLineGoToBuffer 1<CR>", {})
+vim.keymap.set('n', '<leader>2', "<Cmd>BufferLineGoToBuffer 2<CR>", {})
+vim.keymap.set('n', '<leader>3', "<Cmd>BufferLineGoToBuffer 3<CR>", {})
+vim.keymap.set('n', '<leader>4', "<Cmd>BufferLineGoToBuffer 4<CR>", {})
+vim.keymap.set('n', '<leader>5', "<Cmd>BufferLineGoToBuffer 5<CR>", {})
+vim.keymap.set('n', '<leader>6', "<Cmd>BufferLineGoToBuffer 6<CR>", {})
+vim.keymap.set('n', '<leader>7', "<Cmd>BufferLineGoToBuffer 7<CR>", {})
+vim.keymap.set('n', '<leader>8', "<Cmd>BufferLineGoToBuffer 8<CR>", {})
+vim.keymap.set('n', '<leader>9', "<Cmd>BufferLineGoToBuffer 9<CR>", {})
+vim.keymap.set('n', '<leader>$', "<Cmd>BufferLineGoToBuffer -1<CR>", {})
+
+vim.keymap.set('n', '<leader>[b', "<Cmd>BufferLineCycleNext<CR>", {})
+vim.keymap.set('n', '<leader>b]', "<Cmd>BufferLineCyclePrev<CR>", {})
+
 require('gitsigns').setup()
 
 -- Setup nvim-cmp.
